@@ -1,9 +1,11 @@
+import { DATA_URL } from "../utils/urls.js";
+import { HomeHandler } from "./homePage.js";
 
 export const fetchHomeData = async () => {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetchdata(GET_USER_INFdataO, {}, token);
+        const response = await fetchdata(GET_USER_INFO, {}, token);
 
         if (Array.isArray(response.errors)) {
             throw new Error(response.errors[0].message);
@@ -12,7 +14,7 @@ export const fetchHomeData = async () => {
         const user = response?.data.user;
 
         if (response && Array.isArray(user)) {
-            renderProfilePage(user[0]);
+            HomeHandler(user[0]);
         } else {
             throw new Error("Invalid data");
         }
@@ -25,8 +27,8 @@ export const fetchHomeData = async () => {
     }
 }
 
-export const fetchdata = async (query, variables, token) => {
-    const response = await fetch(GRAPHQL_URL, {
+export const fetchdata = async (query, variables=null, token) => {
+    const response = await fetch(DATA_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

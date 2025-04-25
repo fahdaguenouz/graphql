@@ -1,7 +1,10 @@
+import { fetchHomeData } from "../home/fetchData.js"
+import { AUTH } from "../utils/urls.js"
+import { loginForm } from "./loginForm.js"
 
 
 export const handleLogin = () => {
-    renderLoginPage()
+    loginForm()
     const form = document.getElementById("login-form")
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
@@ -10,20 +13,31 @@ export const handleLogin = () => {
             password: form?.password.value,
         }
         try {
-            const response = await submitLogin(credentials)
+            const response = await HandelSubmitLogin(credentials)
             if (response.error) {
                 throw response.error
             }
-            localStorage.setItem('JWT', response)
-            handleProfile()
+            localStorage.setItem('token', response)
+            fetchHomeData()
         } catch (error) {
-            writeErrorMessage("login-error", error)
+           console.log(error);
+           
         }
     })
 }
 
 export const handleLogout = () => {
-    localStorage.removeItem('JWT')
+    localStorage.removeItem('token')
     document.body.innerHTML = ``
     handleLogin()
+}
+
+export const HandelSubmitLogin = async (credentials) => {
+    const response = await fetch(AUTH, {
+        method: 'POST',
+        headers: {
+            Authorization: `Basic ${btoa(credentials.username + ":" + credentials.password)}`
+        }
+    });
+    return response.json();
 }
