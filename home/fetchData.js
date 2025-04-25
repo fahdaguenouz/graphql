@@ -1,3 +1,4 @@
+import { USER_INFO } from "../query/graphql.js";
 import { DATA_URL } from "../utils/urls.js";
 import { HomeHandler } from "./homePage.js";
 
@@ -5,7 +6,7 @@ export const fetchHomeData = async () => {
     const token = localStorage.getItem('token');
 
     try {
-        const response = await fetchdata(GET_USER_INFO, {}, token);
+        const response = await fetchdata(USER_INFO, {}, token);
 
         if (Array.isArray(response.errors)) {
             throw new Error(response.errors[0].message);
