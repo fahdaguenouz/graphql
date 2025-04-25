@@ -1,5 +1,5 @@
 import { USER_INFO } from "../query/graphql.js";
-import { DATA_URL } from "../utils/urls.js";
+import { DATA_URL } from "../utils/config.js";
 import { HomeHandler } from "./homePage.js";
 
 export const fetchHomeData = async () => {

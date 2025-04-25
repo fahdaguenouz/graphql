@@ -1,5 +1,5 @@
 import { fetchHomeData } from "../home/fetchData.js"
-import { AUTH } from "../utils/urls.js"
+import { AUTH } from "../utils/config.js"
 import { loginForm } from "./loginForm.js"
 
 
