@@ -1,4 +1,5 @@
 import { handleLogout } from "../auth/LoginHandler.js";
+import { AuditHandler } from "./audit.js";
 
 export const HomeHandler = (user) => {
     document.body.innerHTML = ``;
@@ -14,10 +15,17 @@ export const HomeHandler = (user) => {
                 <i class="fa-solid fa-right-from-bracket"></i> Logout
             </button>
         </div>
-    </div>`;
+</div>
+    
+    <div id="audits-info" class="audits-section">
+          
+    </div>
+    
+    
+    `;
 
     document.body.appendChild(container);
     document.getElementById('logout-button')?.addEventListener('click', handleLogout);
 
-
+    AuditHandler()
 };

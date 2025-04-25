@@ -1,0 +1,87 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(to bottom right, #fdf497, #fbcf33, #f77737);
+    min-height: 100vh;
+    color: #333;
+}
+
+.main-container {
+    padding: 40px 20px;
+}
+
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.user-greeting h1 {
+    font-size: 28px;
+    color: #6b3e26;
+}
+
+.logout-btn {
+    background-color: #ffb347;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #ff944d;
+}
+
+.audits-section {
+    margin: 8px auto;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.audits-title {
+    text-align: center;
+    font-size: 26px;
+    color: #6b3e26;
+    margin-bottom: 30px;
+}
+
+.audits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.audit-card {
+    width: 140px;
+    height: 140px;
+    background-color: #f7ca68;
+    border-radius: 50%;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.audit-number {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 8px;
+    color: #b85c00;
+}
+
+.audit-label {
+    color: #8a6d3b;
+    font-size: 14px;
+}
