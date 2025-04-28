@@ -1,4 +1,3 @@
-
 import { handleLogin } from "./auth/LoginHandler.js"
 import { fetchHomeData } from "./home/fetchData.js"
 

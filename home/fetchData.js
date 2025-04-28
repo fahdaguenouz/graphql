@@ -1,5 +1,6 @@
 import { USER_INFO } from "../query/graphql.js";
 import { DATA_URL } from "../utils/config.js";
+import { Toast } from "../utils/toast.js";
 import { HomeHandler } from "./homePage.js";
 
 export const fetchHomeData = async () => {
@@ -25,6 +26,7 @@ export const fetchHomeData = async () => {
             handleLogout();
         }
         console.error(err);
+        Toast(err)
     }
 }
 

@@ -1,5 +1,6 @@
 import { USER_LEVEL_XP } from "../query/graphql.js";
 import { XpFormat } from "../utils/funcs.js";
+import { Toast } from "../utils/toast.js";
 import { fetchdata } from "./fetchData.js";
 
 export const levelHandler = async () => {
@@ -23,6 +24,7 @@ export const levelHandler = async () => {
             handleLogout();
         } else {
             console.error("Error fetching level and XP:", error);
+            Toast(error)
         }
     }
 };

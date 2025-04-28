@@ -1,4 +1,5 @@
 import { AUDITS_INFO } from "../query/graphql.js";
+import { Toast } from "../utils/toast.js";
 import { fetchdata } from "./fetchData.js";
 
 export const AuditHandler = async () => {
@@ -23,6 +24,7 @@ export const AuditHandler = async () => {
             handleLogout();
         }
         console.error(err);
+        Toast(err)
     }
 
     const succeeded = data.audits_aggregate.aggregate.count

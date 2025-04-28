@@ -1,5 +1,6 @@
 import { fetchHomeData } from "../home/fetchData.js"
 import { AUTH } from "../utils/config.js"
+import { Toast } from "../utils/toast.js"
 import { loginForm } from "./loginForm.js"
 
 
@@ -8,10 +9,12 @@ export const handleLogin = () => {
     const form = document.getElementById("login-form")
     form.addEventListener('submit', async (e) => {
         e.preventDefault()
+        
         const credentials = {
             username: form?.username.value,
             password: form?.password.value,
         }
+        
         try {
             const response = await HandelSubmitLogin(credentials)
             if (response.error) {
@@ -21,6 +24,7 @@ export const handleLogin = () => {
             fetchHomeData()
         } catch (error) {
            console.log(error);
+           Toast(error)
            
         }
     })
