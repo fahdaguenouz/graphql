@@ -1,3 +1,4 @@
+import { handleLogout } from "../auth/LoginHandler.js";
 import { USER_INFO } from "../query/graphql.js";
 import { DATA_URL } from "../utils/config.js";
 import { Toast } from "../utils/toast.js";
