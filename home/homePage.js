@@ -1,6 +1,5 @@
 import { handleLogout } from "../auth/LoginHandler.js";
 import { AuditHandler } from "./audit.js";
-import { createProjectCompletionChart } from "./complitedproject.js";
 import { levelHandler } from "./level.js";
 import { createSkillBarChart } from "./skills-chart.js";
 import { createXPLineChart } from "./xpchart.js";
@@ -61,6 +60,6 @@ export const HomeHandler = (user) => {
     AuditHandler()
     createSkillBarChart();
     createXPLineChart()
-   createProjectCompletionChart()
+
   
 };

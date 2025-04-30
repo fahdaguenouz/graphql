@@ -79,7 +79,7 @@ export async function createSkillBarChart() {
         const xLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         xLine.setAttribute("x1", "0");
         xLine.setAttribute("x2", width);
-        xLine.setAttribute("stroke", "#4B5563");
+        xLine.setAttribute("stroke", "#a90e07");
         xAxis.appendChild(xLine);
 
         data.forEach((d, i) => {
@@ -89,7 +89,7 @@ export async function createSkillBarChart() {
             label.setAttribute("y", 25);
             label.setAttribute("text-anchor", "end");
             label.setAttribute("transform", `rotate(-45, ${x}, 25)`);
-            label.setAttribute("fill", "#9CA3AF");
+            label.setAttribute("fill", "#6b3e26");
             label.textContent = d.name;
             xAxis.appendChild(label);
         });
@@ -98,7 +98,7 @@ export async function createSkillBarChart() {
         const yLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         yLine.setAttribute("y1", "0");
         yLine.setAttribute("y2", height);
-        yLine.setAttribute("stroke", "#4B5563");
+        yLine.setAttribute("stroke", "#a90e07");
         yAxis.appendChild(yLine);
 
         for (let i = 0; i <= 10; i++) {
@@ -110,7 +110,7 @@ export async function createSkillBarChart() {
             gridLine.setAttribute("x2", width);
             gridLine.setAttribute("y1", y);
             gridLine.setAttribute("y2", y);
-            gridLine.setAttribute("stroke", "#374151");
+            gridLine.setAttribute("stroke", "#a90e07");
             gridLine.setAttribute("stroke-dasharray", "2,2");
             g.appendChild(gridLine);
 
@@ -119,7 +119,7 @@ export async function createSkillBarChart() {
             label.setAttribute("y", y);
             label.setAttribute("text-anchor", "end");
             label.setAttribute("dominant-baseline", "middle");
-            label.setAttribute("fill", "#9CA3AF");
+            label.setAttribute("fill", "#6b3e26");
             label.textContent = Math.round(value);
             yAxis.appendChild(label);
         }
@@ -141,7 +141,7 @@ export async function createSkillBarChart() {
             bar.setAttribute("y", y);
             bar.setAttribute("width", barWidth);
             bar.setAttribute("height", h);
-            bar.setAttribute("fill", "#4ADE80");
+            bar.setAttribute("fill", "#a90e07");
             bar.setAttribute("rx", "3");
             bar.setAttribute("data-skill", d.name);
             bar.setAttribute("data-amount", d.amount);

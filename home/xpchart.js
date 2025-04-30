@@ -81,7 +81,7 @@ export async function createXPLineChart() {
         const xAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         xAxisLine.setAttribute("x1", "0");
         xAxisLine.setAttribute("x2", width);
-        xAxisLine.setAttribute("stroke", "#4B5563");
+        xAxisLine.setAttribute("stroke", "#a90e07");
         xAxis.appendChild(xAxisLine);
 
         const numXTicks = 10;
@@ -94,13 +94,13 @@ export async function createXPLineChart() {
             tick.setAttribute("x2", x);
             tick.setAttribute("y1", 0);
             tick.setAttribute("y2", 6);
-            tick.setAttribute("stroke", "#4B5563");
+            tick.setAttribute("stroke", "#a90e07");
             xAxis.appendChild(tick);
 
             const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
             label.setAttribute("x", x);
             label.setAttribute("y", 25);
-            label.setAttribute("fill", "#9CA3AF");
+            label.setAttribute("fill", "#6b3e26");
             label.textContent = date.toLocaleDateString();
             label.setAttribute("text-anchor", "end");
             label.setAttribute("transform", `rotate(-45, ${x}, 25)`);
@@ -114,7 +114,7 @@ export async function createXPLineChart() {
         const yAxisLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
         yAxisLine.setAttribute("y1", "0");
         yAxisLine.setAttribute("y2", height);
-        yAxisLine.setAttribute("stroke", "#4B5563");
+        yAxisLine.setAttribute("stroke", "#a90e07");
         yAxis.appendChild(yAxisLine);
 
         const numYTicks = 10;
@@ -127,7 +127,7 @@ export async function createXPLineChart() {
             tick.setAttribute("x2", 0);
             tick.setAttribute("y1", y);
             tick.setAttribute("y2", y);
-            tick.setAttribute("stroke", "#4B5563");
+            tick.setAttribute("stroke", "#a90e07");
             yAxis.appendChild(tick);
 
             const gridLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
@@ -135,7 +135,7 @@ export async function createXPLineChart() {
             gridLine.setAttribute("x2", width);
             gridLine.setAttribute("y1", y);
             gridLine.setAttribute("y2", y);
-            gridLine.setAttribute("stroke", "#374151");
+            gridLine.setAttribute("stroke", "#a90e07");
             gridLine.setAttribute("stroke-dasharray", "2,2");
             g.appendChild(gridLine);
 
@@ -144,7 +144,7 @@ export async function createXPLineChart() {
             label.setAttribute("y", y);
             label.setAttribute("text-anchor", "end");
             label.setAttribute("dominant-baseline", "middle");
-            label.setAttribute("fill", "#9CA3AF");
+            label.setAttribute("fill", "#6b3e26");
             label.textContent = XpFormat(yValue);
             yAxis.appendChild(label);
         }
@@ -164,7 +164,7 @@ export async function createXPLineChart() {
 
         line.setAttribute("d", pathData);
         line.setAttribute("fill", "none");
-        line.setAttribute("stroke", "#4ADE80");
+        line.setAttribute("stroke", "#a90e07");
         line.setAttribute("stroke-width", "2");
 
         g.appendChild(line);
@@ -179,7 +179,7 @@ export async function createXPLineChart() {
             point.setAttribute("cx", xScale(d.date));
             point.setAttribute("cy", yScale(d.cumulative));
             point.setAttribute("r", "4");
-            point.setAttribute("fill", "#4ADE80");
+            point.setAttribute("fill", "#a90e07");
             point.setAttribute("data-project", d.projectName);
             point.setAttribute("data-xp", XpFormat(d.amount));
             point.setAttribute("data-date", d.date.toLocaleDateString());
