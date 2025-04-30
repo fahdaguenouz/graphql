@@ -3,7 +3,7 @@ import { XpFormat } from "../utils/funcs.js";
 import { Toast } from "../utils/toast.js";
 import { fetchdata } from "./fetchData.js";
 
-export async function createXPLineChart() {
+export async function XpChart() {
     const container = document.querySelector(".xp-chart");
     const token = localStorage.getItem("token");
 

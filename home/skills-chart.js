@@ -2,8 +2,9 @@ import { SKILL_QUERY } from "../query/graphql.js";
 import { Toast } from "../utils/toast.js";
 import { fetchdata } from "./fetchData.js";
 
-export async function createSkillBarChart() {
+export async function SkillChart() {
     const container = document.querySelector(".skill-chart");
+    
     const token = localStorage.getItem("token");
     const margin = { top: 20, right: 0, bottom: 90, left: 45 };
     const width = container.clientWidth - margin.left - margin.right;
@@ -15,13 +16,15 @@ export async function createSkillBarChart() {
         let rawData = await fetchdata(SKILL_QUERY, {},token);
         // console.log(rawData);
         rawData = rawData.data.transaction;
-
-        
         if (!rawData || rawData.length === 0) return;
 
         const data = processData(rawData);
+        // console.log(rawData);
+        // console.log(data);
+
+        
         const { xScale, yScale, yMax, barWidth } = createScales(data, width, height, barPadding);
-        const { svg, g } = createSVG(container, width, height, margin);
+        const { g } = createSVG(container, width, height, margin);
 
         drawAxes(g, data, width, height, yScale, yMax, barWidth, xScale);
         drawBars(g, data, xScale, yScale, height, barWidth);
@@ -69,7 +72,7 @@ export async function createSkillBarChart() {
         svg.appendChild(g);
         container.appendChild(svg);
 
-        return { svg, g };
+        return { g };
     }
 
     function drawAxes(g, data, width, height, yScale, yMax, barWidth, xScale) {

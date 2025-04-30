@@ -1,8 +1,10 @@
 import { handleLogout } from "../auth/LoginHandler.js";
 import { AuditHandler } from "./audit.js";
 import { levelHandler } from "./level.js";
-import { createSkillBarChart } from "./skills-chart.js";
-import { createXPLineChart } from "./xpchart.js";
+import { SkillChart } from "./skills-chart.js";
+import { XpChart } from "./xpchart.js";
+
+
 
 export const HomeHandler = (user) => {
     document.body.innerHTML = ``;
@@ -39,16 +41,16 @@ export const HomeHandler = (user) => {
     </div>
     <div class="charts-container">
                 <div class="chart-card">
+                <div class="chart-header">
+                        <h2>Skills </h2>
+                    </div>
+                    <div class="skill-chart"></div>
+                </div>
+                <div class="chart-card">
                     <div class="chart-header">
                         <h2>XP Over Time </h2>
                     </div>
                     <div class="xp-chart"></div>
-                </div>
-                <div class="chart-card">
-                    <div class="chart-header">
-                        <h2>Skills </h2>
-                    </div>
-                    <div class="skill-chart"></div>
                 </div>
             </div>
 
@@ -58,8 +60,8 @@ export const HomeHandler = (user) => {
     document.getElementById('logout-button')?.addEventListener('click', handleLogout);
     levelHandler()
     AuditHandler()
-    createSkillBarChart();
-    createXPLineChart()
+    SkillChart();
+    XpChart()
 
   
 };
