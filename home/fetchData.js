@@ -23,7 +23,7 @@ export const fetchHomeData = async () => {
         }
 
     } catch (err) {
-        if (err.message.includes('JWTExpired')) {
+        if (err.message.includes('JWTExpired')||err.message.includes('JWSError')) {
             handleLogout();
         }
         console.error(err);
