@@ -27,36 +27,36 @@ export const AuditHandler = async () => {
         Toast(err)
     }
 
-    const succeeded = data.audits_aggregate.aggregate.count
-    const failed = data.failed_audits.aggregate.count
-    const total = succeeded + failed
+    const succeeded = data?.audits_aggregate?.aggregate?.count || 0;
+    const failed = data?.failed_audits?.aggregate?.count || 0;
+    const total = succeeded + failed;
 
-    const succeededPercentage = (succeeded / total) * 100
-    const failedPercentage = (failed / total) * 100
+    const succeededPercentage = total ? ((succeeded / total) * 100).toFixed(1) : "No Data";
+    const failedPercentage = total ? ((failed / total) * 100).toFixed(1) : "No Data";
+    const auditRatio = data?.auditRatio ? data.auditRatio.toFixed(1) : "No Data";
 
 
     const container = document.getElementById("audits-info");
-
     container.innerHTML = /*html*/ `
     <div class="chart-border"></div>
     <h2 class="audits-title">Your Audit Statistics</h2>
     <div class="audits-grid">
         <div class="audit-card">
-            <span class="audit-number">${(data.auditRatio).toFixed(1)}</span>
+            <span class="audit-number">${auditRatio}</span>
             <span class="audit-label">Audit Ratio</span>
         </div>
         <div class="audit-card">
-            <span class="audit-number">${total}</span>
+            <span class="audit-number">${total || "No Data"}</span>
             <span class="audit-label">Total Audits</span>
         </div>
         <div class="audit-card">
-            <span class="audit-number" style="color:green;">${(succeededPercentage).toFixed(1)} %</span>
+            <span class="audit-number" style="color:green;">${succeededPercentage} %</span>
             <span class="audit-label">Success Rate</span>
         </div>
         <div class="audit-card">
-            <span class="audit-number" style="color:red;">${(failedPercentage).toFixed(1)} %</span>
+            <span class="audit-number" style="color:red;">${failedPercentage} %</span>
             <span class="audit-label">Fail Rate</span>
         </div>
     </div>
 `;
-}
+};

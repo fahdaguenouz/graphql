@@ -14,10 +14,12 @@ export async function XpChart() {
     let svg, g, data, cumulativeXP = 0, xScale, yScale, yMax, tooltip;
 
         try {
-            let rawData = await fetchdata(XP_PROGRESS_QUERY, {},token);
-            rawData = rawData.data.transaction;
-            if (!rawData || rawData.length === 0) return;
-
+            const resp = await fetchdata(XP_PROGRESS_QUERY, {},token);
+            let rawData = resp.data.transaction;
+            if (!rawData || rawData.length === 0){
+                container.textContent="no Data"
+                return;
+            } 
             createSVG();
             processData(rawData);
             createScales();
@@ -31,11 +33,6 @@ export async function XpChart() {
             container.innerHTML = '<p class="error-message">Error loading chart data</p>';
         }
     
-
-    async function fetchData() {
-        const response = await executeQuery(XP_PROGRESS_QUERY);
-        return response.transaction;
-    }
 
     function createSVG() {
         svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");

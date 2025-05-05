@@ -13,11 +13,15 @@ export const levelHandler = async () => {
             throw res.errors[0].message;
         }
 
-        const levelValue = res.data.user[0].transactions[0]?.amount || 0;
-        const totalXP = res.data.transaction.reduce((sum, tx) => sum + tx.amount, 0);
+        const levelRaw = res.data.user?.[0]?.transactions?.[0]?.amount;
+        const levelValue = levelRaw ? levelRaw : "No Data";
 
+        const totalXP = res.data.transaction?.length
+            ? res.data.transaction.reduce((sum, tx) => sum + (tx.amount || 0), 0)
+            : 0;
+        const totalXPFormatted = totalXP ? XpFormat(totalXP) : "No Data";
         document.getElementById('level-value').textContent = ` ${levelValue}`;
-        document.getElementById('xp-value').textContent = ` ${XpFormat(totalXP)}`;
+        document.getElementById('xp-value').textContent = ` ${totalXPFormatted}`;
 
     } catch (error) {
         if (typeof error === "string" && error.includes("JWTExpired")) {

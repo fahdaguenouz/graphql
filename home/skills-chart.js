@@ -13,10 +13,15 @@ export async function SkillChart() {
     let tooltip;
 
     try {
-        let rawData = await fetchdata(SKILL_QUERY, {},token);
+        const resp = await fetchdata(SKILL_QUERY, {},token);
         // console.log(rawData);
-        rawData = rawData.data.transaction;
-        if (!rawData || rawData.length === 0) return;
+        let rawData = resp.data.transaction;
+        if (!rawData || rawData.length === 0){
+            container.textContent="no Data"
+            
+            return;
+            
+        } 
 
         const data = processData(rawData);
         // console.log(rawData);
