@@ -62,6 +62,7 @@ export async function XpChart() {
 
     function createScales() {
         const xMin = data[0].date;
+        
         const xMax = data[data.length - 1].date;
         xScale = x => (x - xMin) / (xMax - xMin) * width;
 

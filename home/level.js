@@ -21,7 +21,6 @@ export const levelHandler = async () => {
         const totalXP = res.data.transaction?.length
             ? res.data.transaction.reduce((sum, tx) => sum + (tx.amount || 0), 0)
             : 0;
-            console.log(totalXP);
         const totalXPFormatted = totalXP ? XpFormat(totalXP) : "No Data";
         document.getElementById('level-value').textContent = ` ${levelValue}`;
         document.getElementById('xp-value').textContent = ` ${totalXPFormatted}`;

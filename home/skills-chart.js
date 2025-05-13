@@ -14,7 +14,7 @@ export async function SkillChart() {
 
     try {
         const resp = await fetchdata(SKILL_QUERY, {},token);
-        // console.log(rawData);
+
         let rawData = resp.data.transaction;
         if (!rawData || rawData.length === 0){
             container.textContent="no Data"
@@ -24,8 +24,7 @@ export async function SkillChart() {
         } 
 
         const data = processData(rawData);
-        // console.log(rawData);
-        // console.log(data);
+
 
         
         const { xScale, yScale, yMax, barWidth } = createScales(data, width, height, barPadding);
@@ -44,6 +43,7 @@ export async function SkillChart() {
     function processData(data) {
         const skillsMap = new Map();
         data.forEach(item => {
+            
             const skill = item.type.replace('skill_', '');
             const current = skillsMap.get(skill) || 0;
             skillsMap.set(skill, Math.max(current, item.amount));
@@ -154,7 +154,7 @@ export async function SkillChart() {
             bar.setAttribute("data-skill", d.name);
             bar.setAttribute("data-amount", d.amount);
 
-            bar.addEventListener("mouseover", (e) => showTooltip(e));
+            bar.addEventListener("mousemove", (e) => showTooltip(e));
             bar.addEventListener("mouseout", hideTooltip);
 
             bars.appendChild(bar);
@@ -183,27 +183,27 @@ export async function SkillChart() {
         container.appendChild(tooltip);
     }
 
-    function showTooltip(event) {
-        const bar = event.target;
-        const skill = bar.getAttribute("data-skill");
-        const amount = bar.getAttribute("data-amount");
+  function showTooltip(event) {
+    const bar = event.target;
+    const skill = bar.getAttribute("data-skill");
+    const amount = bar.getAttribute("data-amount");
 
-        tooltip.innerHTML = `<div>Skill: ${skill}</div><div>Amount: ${amount}</div>`;
-        tooltip.style.display = "block";
+    tooltip.innerHTML = `<div>Skill: ${skill}</div><div>Amount: ${amount}</div>`;
+    tooltip.style.display = "block";
 
-        const rect = container.getBoundingClientRect();
-        const barRect = bar.getBoundingClientRect();
-        const tooltipRect = tooltip.getBoundingClientRect();
+    const rect = container.getBoundingClientRect();
+    const tooltipRect = tooltip.getBoundingClientRect();
 
-        let left = barRect.left - rect.left + (barRect.width / 2) - (tooltipRect.width / 2);
-        let top = barRect.top - rect.top - tooltipRect.height - 10;
+    let left = event.clientX - rect.left + 10;
+    let top = event.clientY - rect.top + 10;
 
-        left = Math.max(0, Math.min(left, rect.width - tooltipRect.width));
-        top = Math.max(0, top);
+    left = Math.min(left, rect.width - tooltipRect.width);
+    top = Math.min(top, rect.height - tooltipRect.height);
 
-        tooltip.style.left = `${left}px`;
-        tooltip.style.top = `${top}px`;
-    }
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+}
+
 
     function hideTooltip() {
         tooltip.style.display = "none";
