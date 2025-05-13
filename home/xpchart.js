@@ -70,7 +70,6 @@ export async function XpChart() {
     }
 
     function drawAxes() {
-        // X Axis
         const xAxis = document.createElementNS("http://www.w3.org/2000/svg", "g");
         xAxis.setAttribute("class", "x-axis");
         xAxis.setAttribute("transform", `translate(0,${height})`);
@@ -104,7 +103,6 @@ export async function XpChart() {
             xAxis.appendChild(label);
         }
 
-        // Y Axis
         const yAxis = document.createElementNS("http://www.w3.org/2000/svg", "g");
         yAxis.setAttribute("class", "y-axis");
 
